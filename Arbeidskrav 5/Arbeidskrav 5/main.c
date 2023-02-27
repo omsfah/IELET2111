@@ -7,13 +7,13 @@
 
 #include <util/delay.h>
 #include "omsfah_usart.h"
-int sum;
+
 
 int main(void)
 {
     while (1) 
     {
-
+		
     }
 }
 
