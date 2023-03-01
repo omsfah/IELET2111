@@ -7,13 +7,21 @@
 
 #include <util/delay.h>
 #include "omsfah_usart.h"
+#include <avr/io.h>
+#include <avr/interrupt.h>
 
+ISR(PORTB_PORT_vect)
+{
+	
+}
 
 int main(void)
 {
+	PORTB.PIN2CTRL = PORT_PULLUPEN_bm | PORT_ISC_FALLING_gc;
+	sei();
     while (1) 
     {
-		
+		;
     }
 }
 
