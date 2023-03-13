@@ -9,16 +9,25 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
+ISR(PORTB_PORT_vect){
+	printf("Knappen er trykket!\r\n");
+	
+	PORTB.INTFLAGS = PIN2_bm;
+}
+
 int main(void)
 {
+	PORTB.DIR = PIN3_bm;
+	PORTB.OUT = ~PIN3_bm;
+	PORTB.PIN2CTRL = PORT_PULLUPEN_bm | PORT_ISC_FALLING_gc;
+	sei();
 	USART3_init();
 	_delay_ms(10);
 	stdout = &USART_stream;
     while (1) 
     {
-	printf("test\r\n");
-	_delay_ms(100);
-		
+	_delay_ms(1000);
+	PORTB.OUT ^=8;
     }
 }
 
