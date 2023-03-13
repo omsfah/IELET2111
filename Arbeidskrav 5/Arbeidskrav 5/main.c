@@ -8,10 +8,11 @@
 #include "omsfah_usart.h"
 #include <util/delay.h>
 #include <avr/interrupt.h>
+volatile int trykk = 0;
 
 ISR(PORTB_PORT_vect){
-	printf("Knappen er trykket!\r\n");
-	
+	trykk += 1;
+	printf("Knappen er trykket, verdien er lik: %d\r\n",trykk);
 	PORTB.INTFLAGS = PIN2_bm;
 }
 
