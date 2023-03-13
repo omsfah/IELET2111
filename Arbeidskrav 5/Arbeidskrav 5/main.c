@@ -5,23 +5,20 @@
  * Author : Windows-NTNU
  */ 
 
-#include <util/delay.h>
 #include "omsfah_usart.h"
-#include <avr/io.h>
+#include <util/delay.h>
 #include <avr/interrupt.h>
-
-ISR(PORTB_PORT_vect)
-{
-	
-}
 
 int main(void)
 {
-	PORTB.PIN2CTRL = PORT_PULLUPEN_bm | PORT_ISC_FALLING_gc;
-	sei();
+	USART3_init();
+	_delay_ms(10);
+	stdout = &USART_stream;
     while (1) 
     {
-		;
+	printf("test\r\n");
+	_delay_ms(100);
+		
     }
 }
 

@@ -28,11 +28,6 @@ void USART3_sendString(char *str)
 		USART3_sendChar(str[i]);
 	}
 }
-uint8_t USART3_printChar(char c, FILE* stream)
-{
-	USART3_sendChar(c);
-	return 0;
-}
 char USART3_readChar(void)
 {
 	while (!(USART3.STATUS & USART_RXCIF_bm))
@@ -41,5 +36,9 @@ char USART3_readChar(void)
 	}
 	return USART3.RXDATAL;
 }
-
+uint8_t USART3_printChar(char c, FILE* stream)
+{
+	USART3_sendChar(c);
+	return 0;
+}
 FILE USART_stream = FDEV_SETUP_STREAM(USART3_printChar, NULL, _FDEV_SETUP_WRITE);
