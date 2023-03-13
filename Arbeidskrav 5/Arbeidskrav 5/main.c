@@ -19,7 +19,6 @@ ISR(PORTB_PORT_vect){
 int main(void)
 {
 	PORTB.DIR = PIN3_bm;
-	PORTB.OUT = ~PIN3_bm;
 	PORTB.PIN2CTRL = PORT_PULLUPEN_bm | PORT_ISC_FALLING_gc;
 	sei();
 	USART3_init();
@@ -27,8 +26,11 @@ int main(void)
 	stdout = &USART_stream;
     while (1) 
     {
-	_delay_ms(1000);
-	PORTB.OUT ^=8;
+	if (trykk >= 3)
+	{
+		PORTB.OUT ^=8;
+		trykk=0;
+	}
     }
 }
 
